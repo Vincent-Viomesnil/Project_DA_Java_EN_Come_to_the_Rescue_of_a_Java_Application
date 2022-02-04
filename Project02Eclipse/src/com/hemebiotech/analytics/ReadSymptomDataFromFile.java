@@ -6,22 +6,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Simple brute force implementation
- *
- */
+/** 
+* @param filepath a full or partial path to file with symptom strings in it,
+* 
+*/
+
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private String inputFile;
 
-	/**
-	 * 
-	 * @param filepath a full or partial path to file with symptom strings in it,
-	 *                 one per line
-	 *                 
-	 *                 
-	 *  Voir si besoin d'une nouvelle méthode pour mettre dans l'ordre ?
-	 */
+
 	public ReadSymptomDataFromFile(String inputFile) throws IOException {
 		this.inputFile = inputFile;
 	}
@@ -36,8 +30,8 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				String line = reader.readLine();
 
 				while (line != null) {
-					result.add(line); /** affichage de la ligne */
-					line = reader.readLine(); /** lecture de la prochaine ligne */
+					result.add(line); // display the line
+					line = reader.readLine(); // reading the next line
 				}
 				reader.close();
 			} catch (IOException e) {

@@ -3,26 +3,27 @@ package com.hemebiotech.analytics;
 import java.util.List;
 import java.util.TreeMap;
 
-
-/** @return compteurs = retourne le nombre d'occurences contenues dans la map compteurs.
-* @param compte l'ensemble des éléments présents dans la map */ 
-
 public class CountSymptoms {
-	
+
+/**
+ * 
+ * @param symptomsList to have the set of the symptoms' list
+ * @return countSymptoms = returns the list of symptoms and display the number of occurrences
+ */
 	public TreeMap<String, Integer> nbOccurrence(List<String> symptomsList) {
 
-		TreeMap<String, Integer> compteurs = new TreeMap<String, Integer>();
+		TreeMap<String, Integer> countSymptoms = new TreeMap<String, Integer>();
 
-		for(String symptom : symptomsList) {	/** Boucle sur chaque élément "symptom" contenu dans ma liste de symptomes */
-			if (compteurs.containsKey(symptom)) {	/** on analyse si le symptome existant dans la Map*/
+		for(String symptom : symptomsList) {	// Display of each symptom contained in the symptoms' list
+			if (countSymptoms.containsKey(symptom)) {	// Checking if the symptom is existing in the map 
 																  
-				compteurs.put(symptom, compteurs.get(symptom)+1); /** Si symptome existant, alors on va l'incrémenter de 1 */
+				countSymptoms.put(symptom, countSymptoms.get(symptom)+1); // if symptom is existing, then it will be increment by 1
 				
 			} else {
-				compteurs.put(symptom, 1); /** Si le symptome n'existe pas, on va lui mettre 1 en valeur */
+				countSymptoms.put(symptom, 1); //if symptom doesn't exist, we put it the value of 1 
 			}
 		}
-		return compteurs; /** retourne le résultat de la map compteurs */ 
+		return countSymptoms; 
 	
 	}
 }
