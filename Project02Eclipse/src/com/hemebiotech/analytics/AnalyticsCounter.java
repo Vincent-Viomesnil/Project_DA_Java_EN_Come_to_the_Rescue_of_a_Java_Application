@@ -4,32 +4,35 @@ import java.util.List;
 import java.util.TreeMap;
 
 /** 
- * 	@author Vincent Viomesnil
- *  OK: Compter les occurrences
- * 	TO DO : automatiser l'écriture du fichier.
- * 	TO DO : Voir si besoin d'une nouvelle méthode/Class pour mettre dans l'ordre ?
- *
+ * @author Vincent Viomesnil
  */
 
 public class AnalyticsCounter {
 
 	static final String inputFile = ".\\Project02Eclipse\\symptoms.txt";
 	static final String outputFile = "result.out"; 
-	
+
+/**
+ * 
+ * @param args an array of command-line arguments for the application.
+ * @throws Exception with the reading or writing of Input/Output Stream
+ */
 	public static void main(String[] args) throws Exception {
 		
-		ISymptomReader reader = new ReadSymptomDataFromFile(inputFile); /** Lecture du fichier contenant la liste des symptomes */
-		List<String> symptomsList = reader.getSymptoms(); /** affectation de la liste "symptomsList" au fichier de lecture */ 
-		TreeMap<String, Integer> mapOccurrence = new TreeMap<String, Integer>(); /** Création de la Map "mapOccurrence" */ 	
+/**
+ * @param mapOccurrence Creation of the symptoms list by occurrence.
+ */
+
+		ISymptomReader reader = new ReadSymptomDataFromFile(inputFile); // Read the file that contains the symptoms list. 
+		List<String> symptomsList = reader.getSymptoms();  
+		TreeMap<String, Integer> mapOccurrence = new TreeMap<String, Integer>(); // instantiation of the map "mapOccurrence".   	
 		
-		ISymptomWriter writer = new WriteSymptomOnFile(outputFile);
+		CountSymptoms countSymptoms = new CountSymptoms(); // Creation of the object "countSymptoms" of the "CountSymptoms" class
+		mapOccurrence = countSymptoms.nbOccurrence(symptomsList);  // "mapOccurrence" that returns the list of symptoms and display the number of occurrences
 		
-		CountSymptoms compteurs = new CountSymptoms(); /** Instanciation de l'objet "compteurs" de la classe "CountSymptoms" */ 
-		mapOccurrence = compteurs.nbOccurrence(symptomsList); /** Lecture du nb d'occurrences à partir de la map */
+		System.out.println(mapOccurrence); // Display the number of occurrences from the map 
 		
-		System.out.println(mapOccurrence); /** Affichage du nombre d'occurrences par symptome depuis la liste des symptomes */
-		
-		writer.writeSymptoms(mapOccurrence); /** Ecriture dans le fichier externe "result.out" du nombre d'occurrence par symptome */
-		
+		ISymptomWriter writer = new WriteSymptomOnFile(outputFile); // Write on the outputFile
+		writer.writeSymptoms(mapOccurrence); // Writing the occurrence per symptom in the output file "result.out" 		
 		}
 }

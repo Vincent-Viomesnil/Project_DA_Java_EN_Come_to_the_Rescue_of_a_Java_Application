@@ -9,12 +9,9 @@ import java.util.TreeMap;
 
 /**
  * 
- * @param outputFile a full or partial path to file with symptom strings in it,
- *                   one per line
- * 
- *                   Voir si besoin d'une nouvelle méthode pour mettre dans
- *                   l'ordre ? TO DO : automatiser l'écriture du fichier.
+ * @param writes in a output file the list of symptoms sorted in alphabetical order
  */
+
 public class WriteSymptomOnFile implements ISymptomWriter {
 
 	private String outputFile;
@@ -25,7 +22,7 @@ public class WriteSymptomOnFile implements ISymptomWriter {
 	}
 	
 	@Override
-	public void writeSymptoms (TreeMap<String, Integer> nbOccurrence) throws IOException{
+	public void writeSymptoms (TreeMap<String, Integer> nbOccurrence) throws IOException{ //Write the result in a file, after counting and sorting from CountSymptoms class
 			
 		 try (FileWriter fileWriter = new FileWriter(outputFile, false);
 				BufferedWriter writer = new BufferedWriter (fileWriter)) {
