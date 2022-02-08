@@ -6,16 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 
-* @param filepath a full or partial path to file with symptom strings in it,
-* 
-*/
-
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private String inputFile;
 
-
+	/**
+	 * @param inputFile the reading of the inputFile from the filepath.
+	 * @throws IOException Exception with the reading from the input file.
+	 */
 	public ReadSymptomDataFromFile(String inputFile) throws IOException {
 		this.inputFile = inputFile;
 	}
@@ -30,16 +28,15 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				String line = reader.readLine();
 
 				while (line != null) {
-					result.add(line); // display the line
-					line = reader.readLine(); // reading the next line
+					result.add(line);
+					line = reader.readLine();
 				}
 				reader.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
 		return result;
-	}
 
+	}
 }
